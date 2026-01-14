@@ -14,8 +14,23 @@ app.get('/', (req, res) => {
 });
 
 app.get('/main', (req, res) => {
-    res.render('main')
+    let roomId = req.query.room;
+
+
+    if (!roomId){
+        roomId = generateCode();
+        console.log(`Generated room ID: ${roomId}`);
+    }
+    console.log(`Room ID: ${roomId}`);
+
+    //res.render('main', { roomId });
+    io.emit('roomCreated', { roomId });
 })
+
+function generateCode() {
+    return Math.random().toString(36).substring(2, 8);
+}
+
 
 io.on('connection', (socket) => {
     console.log('A player connected')
