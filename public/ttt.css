@@ -1,1 +1,53 @@
 /* komment */
+
+header{
+    text-align: center;
+    padding: 30px;
+}
+
+main{
+    padding: 15px;
+}
+
+footer{
+    text-align: center;
+    letter-spacing: 3px;
+    font-size: 80%;
+}
+
+
+.game-board {
+    width: 400px;
+    height: 400px;
+    margin: 0 auto;
+    background-color: #34495e;
+    color: #fff;
+    border: 6px solid #2c3e50;
+    border-radius: 10px;
+
+    display: grid;
+    grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+}
+
+.box {
+    border: 6px solid #2c3e50;
+    border-radius: 2px;
+    font-family: Helvetica;
+    font-weight: bold;
+    font-size: 4em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.player-list{
+    list-style-type: none;
+    padding: 0;
+    border: 6px solid #2c3e50;
+    border-radius: 10px;
+
+}
+
+.player-list li {
+    padding: 5px 0;
+}
