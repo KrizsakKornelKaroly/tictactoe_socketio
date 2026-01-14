@@ -18,20 +18,20 @@
     </div>
     <div class="col-4 text-center">
         <div>
-
             <h3>Játékosok</h3>
             <div id="players-list">
-                <!-- Játékosok listája ide kerül -->
-
                 <ul class="player-list">
                     <li>Player 1 - <span class="player-character"></span></li>
                     <li>Player 2 - <span class="player-character"></span></li>
                 </ul>
                 </div>
 
-            <button class="btn btn-outline-light mb-3">Kijelentkezés</button>
+            <button id="leave-btn" class="btn btn-outline-light mb-3">Kijelentkezés</button>
         </div>
     </div>
 </div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/client.js"></script>
 
 <%- include('footer') %>
