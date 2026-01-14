@@ -17,6 +17,16 @@ app.get('/main', (req, res) => {
   res.render('main')
 })
 
+io.on('connection', (socket) => {
+  console.log('A player connected')
+
+  socket.on('playerLeave', () => {
+    console.log('A player disconnected')
+
+    socket.disconnect()
+  })
+})
+
 server.listen(3000, () => {
   console.log('Server is listening on port 3000 (http://localhost:3000)');
 });
