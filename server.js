@@ -13,6 +13,10 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
+app.get('/main', (req, res) => {
+  res.render('main')
+})
+
 server.listen(3000, () => {
   console.log('Server is listening on port 3000 (http://localhost:3000)');
 });
