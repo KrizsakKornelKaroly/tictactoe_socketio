@@ -2,7 +2,7 @@
 
     <div class="row">
         <div class="col-8 text-center">
-            <h3>Tic-tac-toe - Kód: <%= roomId %></h3>
+            <h3>Tic-tac-toe - Kód: <%= chatConfig.roomId %></h3>
 
             <div class="game-board">
                 <button class="box" id="1"></button>
@@ -19,10 +19,10 @@
         <div class="col-4 text-center">
             <div>
                 <h3>Játékosok</h3>
-                <div id="players-list">
-                    <ul class="player-list">
-                        <li>Player 1 - <span class="player-character"></span></li>
-                        <li>Player 2 - <span class="player-character"></span></li>
+                <div class="player-list mb-3">
+                    <ul id="players-list">
+                        <li>Player 1 - <span id="player-character-1"></span></li>
+                        <li>Player 2 - <span id="player-character-2"></span></li>
                     </ul>
                 </div>
 
@@ -30,6 +30,10 @@
             </div>
         </div>
     </div>
+
+    <script>
+        window.chatConfig = <%- JSON.stringify(chatConfig) %>;
+    </script>
 
     <script src="/socket.io/socket.io.js"></script>
     <script src="/client.js"></script>

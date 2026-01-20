@@ -1,6 +1,12 @@
 const socket = io()
 
-let roomId = null
+const chatConfig = window.chatConfig || {}
+let roomId = chatConfig.roomId || null
+
+if (chatConfig && chatConfig.name && chatConfig.roomId) {
+    socket.emit('joinRoom', chatConfig)
+    roomId = chatConfig.roomId
+}
 
 const leaveBtn = document.getElementById('leave-btn')
 leaveBtn.addEventListener('click', () => {
@@ -20,14 +26,23 @@ boxes.forEach(box => {
 socket.on('updateBoard', (data) => {
     const { id, player } = data
     const box = document.getElementById(id)
+    if (!box) return
     box.classList.add('disabled')
     box.textContent = player
     console.log(`Board updated: Player ${player} moved to box ${id}`)
 })
 
-/* giving code to client to prevent refreshing bug
-socket.on('roomCreated', (data) => {
-    roomId = data
-    socket.emit('joinRoom', { roomId })
+const playersList = document.getElementById('players-list')
+
+const renderPlayers = (players) => {
+    playersList.innerHTML = ''
+    players.forEach(player => {
+        const li = document.createElement('li')
+        li.innerHTML = (player.name || 'Unknown') + ' - ' + (player.character || '')
+        playersList.appendChild(li)
+    });
+}
+
+socket.on('room-players', ({ players }) => {
+    renderPlayers(players)
 })
-*/

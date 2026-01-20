@@ -45,11 +45,13 @@ footer{
 }
 
 .player-list{
-    list-style-type: none;
-    padding: 0;
     border: 6px solid #2c3e50;
     border-radius: 10px;
+}
 
+#players-list {
+    padding: 0;
+    list-style-type: none;
 }
 
 .player-list li {
