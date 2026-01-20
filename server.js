@@ -10,12 +10,12 @@ app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
-    res.render('index');
+    const generatedRoomId = generateCode();
+    res.render('index', { generatedRoomId: generatedRoomId });
 });
 
 app.get('/main', (req, res) => {
     let roomId = req.query.room;
-
 
     if (!roomId){
         roomId = generateCode();
@@ -23,7 +23,7 @@ app.get('/main', (req, res) => {
     }
     console.log(`Room ID: ${roomId}`);
 
-    //res.render('main', { roomId });
+    res.render('main', { roomId });
     io.emit('roomCreated', { roomId });
 })
 
