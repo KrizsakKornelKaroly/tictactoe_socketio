@@ -10,11 +10,40 @@
             <input type="text" class="form-control" id="character" name="character" placeholder="">
             <label for="character">Add meg a karaktered!</label>
         </div>
-        <div class="form-floating mb-3">
-            <input type="password" class="form-control" id="room" name="room" placeholder="">
-            <label for="room">Írd be a szoba kódját, vagy hagyd üresen, hogy új szobát hozz létre!</label>
+
+
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                        Új játék létrehozása
+                    </button>
+                </h2>
+                <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">
+                            <button>
+                                Játék létrehozása
+                            </button>
+                        </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                        Csatlakozás szobához
+                    </button>
+                </h2>
+                <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body"> 
+
+
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <button class="btn btn-outline-light mb-3">Belépés</button>
+
     </form>
 </div>
