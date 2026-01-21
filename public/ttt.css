@@ -1,65 +1,160 @@
-/* komment */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap');
 
-header{
-    text-align: center;
-    padding: 30px;
+/* -- body -- */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+body.cyber-body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background:
+        radial-gradient(circle at top, #0b1a2e, #02040a 70%);
+    color: #e6f1ff;
+    font-family: 'Orbitron', sans-serif;
 }
 
-main{
-    padding: 15px;
+.cyber-container {
+    max-width: 1200px;
+    flex: 1 0 auto;
 }
 
-footer{
+/* -- header -- */
+.cyber-header {
     text-align: center;
+    padding: 30px 0;
+}
+
+.cyber-title {
+    color: #ffd300;
+    letter-spacing: 6px;
+    text-shadow:
+        0 0 10px rgba(255, 211, 0, 0.6),
+        0 0 25px rgba(0, 200, 255, 0.4);
+}
+
+/* -- hologram -- */
+.hologram {
+    background: linear-gradient(180deg,
+            rgba(0, 200, 255, 0.08),
+            rgba(255, 211, 0, 0.05));
+    border: 1px solid rgba(0, 200, 255, 0.4);
+    box-shadow:
+        0 0 20px rgba(0, 200, 255, 0.25),
+        inset 0 0 30px rgba(255, 211, 0, 0.08);
+    backdrop-filter: blur(6px);
+    padding: 20px;
+    border-radius: 10px;
+    position: relative;
+}
+
+.hologram::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(to bottom,
+            rgba(255, 255, 255, 0.04),
+            rgba(255, 255, 255, 0.04) 1px,
+            transparent 1px,
+            transparent 4px);
+    pointer-events: none;
+    opacity: 0.15;
+}
+
+/* -- címek -- */
+.section-title,
+.panel-title {
+    color: #00c8ff;
+    text-align: center;
+    margin-bottom: 15px;
     letter-spacing: 3px;
-    font-size: 80%;
 }
 
+/* -- belépés -- */
+.login-panel {
+    max-width: 420px;
+    margin: 60px auto;
+}
 
-.game-board {
+.cyber-input {
+    background-color: rgba(5, 10, 20, 0.9) !important;
+    color: #00eaff !important;
+    border: 1px solid #00c8ff;
+}
+
+.cyber-input:focus {
+    box-shadow: 0 0 12px rgba(0, 200, 255, 0.8);
+}
+
+/* -- gomb -- */
+.cyber-btn {
+    border: 1px solid #ffd300;
+    color: #ffd300;
+    background: transparent;
+    letter-spacing: 2px;
+    transition: all 0.2s ease;
+}
+
+.cyber-btn:hover {
+    background: rgba(255, 211, 0, 0.15);
+    box-shadow: 0 0 15px rgba(255, 211, 0, 0.8);
+}
+
+/* -- grid -- */
+.cyber-grid {
     width: 400px;
     height: 400px;
     margin: 0 auto;
-    background-color: #34495e !important;
-    color: #fff;
-    border: 6px solid #2c3e50;
-    border-radius: 10px;
     display: grid;
     grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+    gap: 6px;
 }
 
-.box {
-    border: 6px solid #2c3e50;
-    border-radius: 2px;
-    font-family: Helvetica;
-    font-weight: bold;
-    font-size: 4em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #34495e !important;
+.cyber-box {
+    background: rgba(0, 20, 40, 0.9);
+    border: 1px solid rgba(0, 200, 255, 0.6);
+    font-size: 4rem;
+    color: #ffd300;
+    text-shadow: 0 0 15px currentColor;
+    transition: all 0.15s ease;
 }
 
-.box:active {
-    background-color: #2c3e50 !important;
+.cyber-box:hover {
+    background: rgba(0, 200, 255, 0.15);
+    box-shadow: 0 0 20px rgba(0, 200, 255, 0.9);
 }
 
-.player-list{
-    border: 6px solid #2c3e50;
-    border-radius: 10px;
-}
-
-#players-list {
-    padding: 0;
-    list-style-type: none;
-}
-
-.player-list li {
-    padding: 5px 0;
-}
-
-.disabled{
-    cursor: pointer;
+.cyber-box.disabled {
+    opacity: 0.4;
     pointer-events: none;
-    background-color: #2c3e50 !important;
+}
+
+/* -- játékos lista -- */
+.players-list {
+    list-style: none;
+    padding: 0;
+}
+
+.players-list li {
+    padding: 8px;
+    border-bottom: 1px dashed rgba(0, 200, 255, 0.4);
+}
+
+/* -- szoba cucc -- */
+.room-code {
+    text-align: center;
+    margin-top: 15px;
+    color: #ffd300;
+    text-shadow: 0 0 10px rgba(255, 211, 0, 0.6);
+}
+
+/* -- footer -- */
+.cyber-footer {
+    text-align: center;
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    opacity: 0.6;
+    margin-top: auto;
+    padding-top: 100px;
 }

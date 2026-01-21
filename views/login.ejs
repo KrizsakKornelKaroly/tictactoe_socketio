@@ -1,20 +1,22 @@
-<div>
-    <h2>Belépés</h2>
+<div class="login-panel hologram">
+    <h2 class="panel-title">BELÉPÉS</h2>
 
     <form action="/main" method="get">
         <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="name" name="name" placeholder="">
-            <label for="name">Add meg a neved!</label>
-        </div>
-        <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="character" name="character" placeholder="" maxlength="1">
-            <label for="character">Add meg a karaktered!</label>
-        </div>
-        <div class="form-floating mb-3">
-            <input type="password" class="form-control" id="room" name="room" placeholder="">
-            <label for="room">Írd be a szoba kódját, vagy hagyd üresen, hogy új szobát hozz létre!</label>
+            <input type="text" class="form-control cyber-input text-center" id="name" name="name">
+            <label for="name">NÉV</label>
         </div>
 
-        <button class="btn btn-outline-light mb-3">Belépés</button>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control cyber-input text-center" id="character" name="character" maxlength="1">
+            <label for="character">SZIMBÓLUM</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            <input type="password" class="form-control cyber-input text-center" id="room" name="room">
+            <label for="room">SZOBAKÓD (opcionális)</label>
+        </div>
+
+        <button class="btn cyber-btn w-100">BELÉPÉS</button>
     </form>
 </div>
