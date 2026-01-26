@@ -36,8 +36,12 @@ app.get('/join', (req, res) => {
 });
 
 app.get('/main', (req, res) => {
-    let roomId = req.query.room;
-    res.render('main', { roomId });
+    let roomConfig = {
+        roomId: req.query.room,
+        name: req.query.name,
+        character: req.query.character
+    }
+    res.render('main', { roomConfig });
 })
 
 function generateCode() {

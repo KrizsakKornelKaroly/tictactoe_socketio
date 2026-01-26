@@ -35,15 +35,14 @@
                 <p id="player-score-2"></p>
     
                 <h3 id="gameCode" class="room-code">
-                    SZOBÁKÓD: <%= chatConfig.roomId %>
+                    SZOBÁKÓD: <%= roomConfig.roomId %>
                 </h3>
             </div>
         </div>
     </div>
 
-
     <script>
-        window.chatConfig = <%- JSON.stringify(chatConfig) %>;
+        window.roomConfig = <%- JSON.stringify(roomConfig) %>;
     </script>
 
     <script src="/socket.io/socket.io.js"></script>

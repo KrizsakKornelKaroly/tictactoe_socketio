@@ -1,11 +1,11 @@
 const socket = io()
 
-const chatConfig = window.chatConfig || {}
-let roomId = chatConfig.roomId || null
+const roomConfig = window.roomConfig || {}
+let roomId = roomConfig.roomId || null
 
-if (chatConfig && chatConfig.name && chatConfig.roomId) {
-    socket.emit('joinRoom', chatConfig)
-    roomId = chatConfig.roomId
+if (roomConfig && roomConfig.name && roomConfig.roomId) {
+    socket.emit('joinRoom', roomConfig)
+    roomId = roomConfig.roomId
 }
 
 const leaveBtn = document.getElementById('leave-btn')
