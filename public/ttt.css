@@ -44,7 +44,7 @@ body.cyber-body {
         0 0 20px rgba(0, 200, 255, 0.25),
         inset 0 0 30px rgba(255, 211, 0, 0.08);
     backdrop-filter: blur(6px);
-    padding: 20px;
+    padding: 10px;
     border-radius: 10px;
     position: relative;
 }
@@ -159,9 +159,9 @@ body.cyber-body {
     box-shadow: 0 0 20px rgba(0, 200, 255, 0.9);
 }
 
-.cyber-box.disabled {
+.cyber-box:disabled {
+    cursor: not-allowed;
     opacity: 0.4;
-    pointer-events: none;
 }
 
 /* -- játékos lista -- */
@@ -178,7 +178,44 @@ body.cyber-body {
 /* -- szoba cucc -- */
 .room-code {
     text-align: center;
-    margin-top: 15px;
+    margin-top: 10px;
+    color: #ffd300;
+    text-shadow: 0 0 10px rgba(255, 211, 0, 0.6);
+}
+
+.current-turn {
+    color: #ffd300;
+    text-shadow: 0 0 10px rgba(255, 211, 0, 0.6);
+    font-weight: bold;
+}
+
+/* -- modal -- */
+.cyber-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+}
+
+.cyber-modal.hidden {
+    display: none;
+}
+
+.cyber-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(4px);
+}
+
+.cyber-modal-content {
+    position: relative;
+    max-width: 400px;
+    margin: 20vh auto;
+    text-align: center;
+}
+
+.modal-text {
+    font-size: 1.2rem;
     color: #ffd300;
     text-shadow: 0 0 10px rgba(255, 211, 0, 0.6);
 }

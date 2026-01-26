@@ -1,24 +1,30 @@
 const socket = io()
 
+const playersList = document.getElementById('players-list')
+const scoreList = document.getElementById('score-list')
+const modal = document.getElementById('game-modal')
+const modalText = document.getElementById('modal-winner-text')
+const closeModalBtn = document.getElementById('close-modal-btn')
+const boxes = document.querySelectorAll('.box')
+const leaveBtn = document.getElementById('leave-btn')
 const roomConfig = window.roomConfig || {}
 let roomId = roomConfig.roomId || null
+let myCharacter = roomConfig.character
+let currentTurn = null
 
 if (roomConfig && roomConfig.name && roomConfig.roomId) {
     socket.emit('joinRoom', roomConfig)
     roomId = roomConfig.roomId
 }
 
-const leaveBtn = document.getElementById('leave-btn')
 leaveBtn.addEventListener('click', () => {
     socket.emit('playerLeave')
     window.location.href = `/`
 })
 
-const boxes = document.querySelectorAll('.box')
 boxes.forEach(box => {
     box.addEventListener('click', () => {
         socket.emit('playerMove', { id: box.id })
-        box.classList.add('disabled')
         console.log(`Player moved to box ${box.id}`)
     })
 })
@@ -32,49 +38,70 @@ socket.on('updateBoard', (data) => {
     box.textContent = player
 
     console.log(`Board updated: Player ${player} moved to box ${id}`)
-
-    checkForWinner(player)
 })
 
+socket.on('turnUpdate', (turn) => {
+    currentTurn = turn
+    updateGridState()
+    highlightCurrentPlayer()
+})
 
-const winningCombinations = [
-    ['1', '2', '3'],
-    ['4', '5', '6'],
-    ['7', '8', '9'],
-    ['1', '4', '7'],
-    ['2', '5', '8'],
-    ['3', '6', '9'],
-    ['1', '5', '9'],
-    ['3', '5', '7']
-]
+function updateGridState() {
+    const isMyTurn = currentTurn === myCharacter
 
-const checkForWinner = (player) => {
-    const playerBoxes = Array.from(boxes).filter(
-        box => box.textContent === player
-    )
-    const playerBoxIds = playerBoxes.map(box => box.id)
-
-    const hasWon = winningCombinations.some(combination =>
-        combination.every(boxId => playerBoxIds.includes(boxId))
-    )
-
-    if (hasWon) {
-        alert(`Player ${player} won.`)
-    }
-
-    return hasWon
+    boxes.forEach(box => {
+        if (box.textContent) return
+        box.disabled = !isMyTurn
+    })
 }
 
+function highlightCurrentPlayer() {
+    socket.emit('requestPlayersRefresh')
+}
 
-const playersList = document.getElementById('players-list')
+socket.on('scoreUpdate', (scores) => {
+    scoreList.innerHTML = ''
+
+    Object.entries(scores).forEach(([char, score]) => {
+        const li = document.createElement('li')
+        li.textContent = `${char}: ${score}`
+        scoreList.appendChild(li)
+    })
+})
+
+socket.on('gameOver', ({ winner }) => {
+    if (winner) {
+        modalText.textContent = `${winner} nyert!`
+    } else {
+        modalText.textContent = 'Döntetlen!'
+    }
+
+    modal.classList.remove('hidden')
+
+    boxes.forEach(box => {
+        box.textContent = ''
+        box.classList.remove('disabled')
+        box.disabled = false
+    })
+})
+
+closeModalBtn.addEventListener('click', () => {
+    modal.classList.add('hidden')
+})
 
 const renderPlayers = (players) => {
     playersList.innerHTML = ''
+
     players.forEach(player => {
         const li = document.createElement('li')
-        li.innerHTML = (player.name) + ' - ' + (player.character)
+        li.textContent = `${player.name} - ${player.character}`
+
+        if (player.character === currentTurn) {
+            li.classList.add('current-turn')
+        }
+
         playersList.appendChild(li)
-    });
+    })
 }
 
 socket.on('room-players', ({ players }) => {

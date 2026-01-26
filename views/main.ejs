@@ -21,18 +21,14 @@
             <div class="hologram panel">
                 <h3 class="section-title">JÁTÉKOSOK</h3>
     
-                <ul id="players-list" class="players-list">
-                    <li>Játékos 1 <span id="player-character-1"></span></li>
-                    <li>Játékos 2 <span id="player-character-2"></span></li>
-                </ul>
+                <ul id="players-list" class="players-list"></ul>
     
                 <button id="leave-btn" class="btn cyber-btn mt-3">KILÉPÉS</button>
             </div>
     
             <div class="hologram panel mt-auto">
                 <h3 class="section-title">PONTOK</h3>
-                <p id="player-score-1"></p>
-                <p id="player-score-2"></p>
+                <ul id="score-list" class="players-list"></ul>
     
                 <h3 id="gameCode" class="room-code">
                     SZOBÁKÓD: <%= roomConfig.roomId %>
@@ -44,6 +40,8 @@
     <script>
         window.roomConfig = <%- JSON.stringify(roomConfig) %>;
     </script>
+
+<%- include('modal') %>
 
     <script src="/socket.io/socket.io.js"></script>
     <script src="/client.js"></script>
