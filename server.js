@@ -21,24 +21,23 @@ app.get('/', (req, res) => {
     res.render('index');
 });
 
+app.get('/new', (req, res) => {
+    const playerName = req.query.name;
+    const character = req.query.character;
+    const newRoom = generateCode();
+    res.redirect(`/main?name=${playerName}&character=${character}&room=${newRoom}`);
+});
+
+app.get('/join', (req, res) => {
+    const roomId = req.query.roomCode;
+    const playerName = req.query.name;
+    const character = req.query.character;
+    res.redirect(`/main?name=${playerName}&character=${character}&room=${roomId}`);
+});
+
 app.get('/main', (req, res) => {
-    const { name, character, room } = req.query
-
-    if (!name) {
-        return res.redirect('/')
-    }
-
-    const roomId = room || generateCode();
-    const chatConfig = {
-        name,
-        character: character,
-        roomId
-    }
-
-    console.log(`Room ID: ${roomId} (user: ${name}, char: ${chatConfig.character})`);
-
-    res.render('main', { chatConfig });
-    io.emit('roomCreated', { chatConfig });
+    let roomId = req.query.room;
+    res.render('main', { roomId });
 })
 
 function generateCode() {
