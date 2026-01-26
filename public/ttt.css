@@ -87,6 +87,40 @@ body.cyber-body {
     box-shadow: 0 0 12px rgba(0, 200, 255, 0.8);
 }
 
+.cyber-accordion .accordion-item {
+    background: transparent;
+    border: 1px solid rgba(0, 200, 255, 0.4);
+    margin-bottom: 10px;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 0 12px rgba(0, 200, 255, 0.25);
+}
+
+.cyber-accordion .accordion-button {
+    background: linear-gradient(
+        180deg,
+        rgba(0, 200, 255, 0.12),
+        rgba(4, 0, 255, 0.06)
+    );
+    color: #00eaff;
+    letter-spacing: 2px;
+    font-weight: 600;
+    border: none;
+    box-shadow: inset 0 0 15px rgba(0, 200, 255, 0.25);
+}
+
+
+.cyber-accordion .accordion-button::after {
+    filter: drop-shadow(0 0 6px rgba(0, 200, 255, 0.8));
+}
+
+.cyber-accordion .accordion-body {
+    background: rgba(5, 10, 20, 0.85);
+    color: #e6f1ff;
+    border-top: 1px solid rgba(0, 200, 255, 0.3);
+    box-shadow: inset 0 0 20px rgba(0, 200, 255, 0.15);
+}
+
 /* -- gomb -- */
 .cyber-btn {
     border: 1px solid #ffd300;
