@@ -1,14 +1,15 @@
-<div>
-    <h2>Belépés</h2>
+<div class="login-panel hologram">
+    <h2 class="panel-title">BELÉPÉS</h2>
 
     <form method="get">
         <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="name" name="name" placeholder="">
-            <label for="name">Add meg a neved!</label>
+            <input type="text" class="form-control cyber-input text-center" id="name" name="name">
+            <label for="name">NÉV</label>
         </div>
+
         <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="character" name="character" placeholder="">
-            <label for="character">Add meg a karaktered!</label>
+            <input type="text" class="form-control cyber-input text-center" id="character" name="character" maxlength="1">
+            <label for="character">SZIMBÓLUM</label>
         </div>
 
 
@@ -22,7 +23,7 @@
                 </h2>
                 <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                     <div class="accordion-body">
-                        <button class="btn btn-outline-light" formaction="/new">
+                        <button class="btn cyber-btn" formaction="/new">
                             Játék létrehozása
                         </button>
                     </div>
@@ -40,13 +41,11 @@
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" placeholder="Szobakód"
                                 aria-label="Szobakód" aria-describedby="button-addon2" id="roomCode" name="roomCode">
-                            <button class="btn btn-outline-secondary" id="button-addon2" formaction="/join">Csatlakozás</button>
+                            <button class="btn cyber-btn" id="button-addon2" formaction="/join">Csatlakozás</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-
     </form>
 </div>
