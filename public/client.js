@@ -24,10 +24,3 @@ socket.on('updateBoard', (data) => {
     box.textContent = player
     console.log(`Board updated: Player ${player} moved to box ${id}`)
 })
-
-/* giving code to client to prevent refreshing bug
-socket.on('roomCreated', (data) => {
-    roomId = data
-    socket.emit('joinRoom', { roomId })
-})
-*/

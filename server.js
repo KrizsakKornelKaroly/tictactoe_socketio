@@ -10,21 +10,26 @@ app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
-    const generatedRoomId = generateCode();
-    res.render('index', { generatedRoomId: generatedRoomId });
+    res.render('index');
+});
+
+app.get('/new', (req, res) => {
+    const playerName = req.query.name;
+    const character = req.query.character;
+    const newRoom = generateCode();
+    res.redirect(`/main?name=${playerName}&character=${character}&room=${newRoom}`);
+});
+
+app.get('/join', (req, res) => {
+    const roomId = req.query.roomCode;
+    const playerName = req.query.name;
+    const character = req.query.character;
+    res.redirect(`/main?name=${playerName}&character=${character}&room=${roomId}`);
 });
 
 app.get('/main', (req, res) => {
     let roomId = req.query.room;
-
-    if (!roomId){
-        roomId = generateCode();
-        console.log(`Generated room ID: ${roomId}`);
-    }
-    console.log(`Room ID: ${roomId}`);
-
     res.render('main', { roomId });
-    io.emit('roomCreated', { roomId });
 })
 
 function generateCode() {

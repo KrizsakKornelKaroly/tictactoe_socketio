@@ -1,7 +1,7 @@
 <div>
     <h2>Belépés</h2>
 
-    <form action="/main" method="get">
+    <form method="get">
         <div class="form-floating mb-3">
             <input type="text" class="form-control" id="name" name="name" placeholder="">
             <label for="name">Add meg a neved!</label>
@@ -21,11 +21,11 @@
                     </button>
                 </h2>
                 <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                        <div class="accordion-body">
-                            <button>
-                                Játék létrehozása
-                            </button>
-                        </div>
+                    <div class="accordion-body">
+                        <button class="btn btn-outline-light" formaction="/new">
+                            Játék létrehozása
+                        </button>
+                    </div>
                 </div>
             </div>
             <div class="accordion-item">
@@ -36,9 +36,12 @@
                     </button>
                 </h2>
                 <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                    <div class="accordion-body"> 
-
-
+                    <div class="accordion-body">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Szobakód"
+                                aria-label="Szobakód" aria-describedby="button-addon2" id="roomCode" name="roomCode">
+                            <button class="btn btn-outline-secondary" id="button-addon2" formaction="/join">Csatlakozás</button>
+                        </div>
                     </div>
                 </div>
             </div>
