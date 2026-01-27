@@ -102,7 +102,7 @@ io.on('connection', (socket) => {
         if (playersInRoom.length >= 2) {
             socket.emit('joinError', { 
                 message: 'A szoba megtelt! Maximum 2 játékos csatlakozhat!',
-                title: 'Csatlakozási hiba'
+                title: 'CSATLAKOZÁSI HIBA'
             })
             return
         }
