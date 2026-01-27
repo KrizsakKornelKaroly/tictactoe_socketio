@@ -69,7 +69,10 @@ app.get('/new', (req, res) => {
 });
 
 app.get('/join', (req, res) => {
-    const roomId = req.query.roomCode;
+    let roomId = req.query.roomCode;
+    if (!req.query.roomCode) {
+        roomId = generateCode();
+    }
     const playerName = req.query.name;
     const character = req.query.character;
     res.redirect(`/main?name=${playerName}&character=${character}&room=${roomId}`);
@@ -203,6 +206,14 @@ io.on('connection', (socket) => {
         scores[player]++
         io.to(roomId).emit('scoreUpdate', convertScoresToNames(roomId, scores))
         io.to(roomId).emit('gameOver', { winner: player })
+    })
+
+    socket.on('requestPlayersRefresh', () => {
+        const user = connectedUsers.get(socket.id)
+        if (!user) return
+
+        const { roomId } = user
+        emitRoomPlayers(roomId)
     })
 
     socket.on('disconnect', () => {
