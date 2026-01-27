@@ -93,6 +93,20 @@ io.on('connection', (socket) => {
 
     socket.on('joinRoom', (data) => {
         const { name, character, roomId } = data
+        
+        // Check how many players are already in the room
+        const playersInRoom = Array.from(connectedUsers.values())
+            .filter(p => p.roomId === roomId)
+        
+        // Limit room to 2 players
+        if (playersInRoom.length >= 2) {
+            socket.emit('joinError', { 
+                message: 'A szoba megtelt! Maximum 2 játékos csatlakozhat!',
+                title: 'Csatlakozási hiba'
+            })
+            return
+        }
+        
         socket.join(roomId)
 
         connectedUsers.set(socket.id, { name, character, roomId })

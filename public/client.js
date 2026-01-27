@@ -4,6 +4,7 @@ const playersList = document.getElementById('players-list')
 const scoreList = document.getElementById('score-list')
 const modal = document.getElementById('game-modal')
 const modalText = document.getElementById('modal-winner-text')
+const modalTitle = document.getElementById('modal-title')
 const closeModalBtn = document.getElementById('close-modal-btn')
 const boxes = document.querySelectorAll('.box')
 const leaveBtn = document.getElementById('leave-btn')
@@ -16,6 +17,16 @@ if (roomConfig && roomConfig.name && roomConfig.roomId) {
     socket.emit('joinRoom', roomConfig)
     roomId = roomConfig.roomId
 }
+
+socket.on('joinError', ({ message, title }) => {
+    modal.classList.remove('hidden')
+    modalText.textContent = message
+    modalTitle.textContent = title
+
+    setTimeout(() => {
+        window.location.href = `/`
+    }, 3000)
+})
 
 leaveBtn.addEventListener('click', () => {
     socket.emit('playerLeave')
@@ -81,8 +92,9 @@ socket.on('gameOver', ({ winner }) => {
     boxes.forEach(box => {
         box.textContent = ''
         box.classList.remove('disabled')
-        box.disabled = false
     })
+
+    updateGridState()
 })
 
 closeModalBtn.addEventListener('click', () => {
